@@ -8,6 +8,7 @@ type ReactContent = (JSX.Element | string)[];
 // one _small cursive_ -> one <span class="small">small cursive</span> two
 const format = wrap("_", text => <span className="small">{text}</span>)
                 .wrap("*", text => <span className="highlight">{text}</span>)
+                .wrap("@", text => <a href={text.split("|")[1]}>{text.split("|")[0]}</a>)
                 .replace("\n", content => content.concat(<br/>));
 
 export default format;
