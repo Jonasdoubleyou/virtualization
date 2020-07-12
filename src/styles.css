@@ -119,6 +119,12 @@ to   { opacity: 1; }
   color: var(--primary);
 }
 
+.question {
+  background-color: var(--primary);
+  color: var(--background);
+ 
+}
+
 h2.notification {
   font-size: 30px;
   line-height: 40px;

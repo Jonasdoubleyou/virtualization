@@ -40,7 +40,7 @@ export class SingleChoiceUI extends React.Component<SingleChoice & Props, State>
     const {text, answers, continuation, unlock = false} = this.props;
     const { chosen = "", showAnswers = false } = this.state || {};
 
-    const question = <div className="notification">
+    const question = <div className="notification question">
       <ShowText text={text} done={() => this.setState({ showAnswers: true })} />
     </div>;
 

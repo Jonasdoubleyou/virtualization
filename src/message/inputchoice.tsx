@@ -41,7 +41,7 @@ export class InputChoiceUI extends React.Component<InputChoice& Props, State> {
     const {text, choices, storeAs, next, continuation} = this.props;
     const { chosen = "", showChoice = false, input = "" } = this.state || {};
 
-    const question = <div className="notification">
+    const question = <div className="notification question">
       <ShowText text={text} done={() => this.setState({ showChoice: true })} />
     </div>;
 

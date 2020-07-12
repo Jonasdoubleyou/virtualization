@@ -22,7 +22,7 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   begin: {
-    text: "Hier bekommst du einen kleinen Überblick über verschiedene Arten der Virtualisierung, zwischendrin gibt es ein paar Quizfragen zum wiederholen.",
+    text: "Hier bekommst du einen kleinen Überblick über verschiedene Arten der Virtualisierung, zwischendrin gibt es ein paar Quizfragen zum wiederholen. Die Bearbeitung sollte 30min bis 1h 30min gehen, je nach dem wie gut du dich schon auskennst. ",
     next: "network1",
   },
 
@@ -32,20 +32,20 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   q1: {
-    text: "Durch VLANs können Anwendungen virtualisiert werden.",
+    text: "Durch VLANs können physikalische Netze in virtuelle Netze unterteilt werden.",
     answers: [
-      { text: "Wahr", right: false, next: "q1_r" },
-      { text: "Falsch", right: true, next: "q1_w" }
+      { text: "Wahr", right: true, next: "q1_r" },
+      { text: "Falsch", right: false, next: "q1_w" }
     ],
   },
 
-  q1_w: {
-    text: "Genau, _Virtual Local Area Networks_ sind eine Technik zur Netzwerkvirtualisierung",
+  q1_r: {
+    text: "Genau, _Virtual Local Area Networks_ sind eine Technik, um z.B. bestimmte Ports eines Switches von anderen zu trennen.",
     next: "q2"
   },
 
-  q1_r: {
-    text: "Falsch, _Virtual Local Area Networks_ sind eine Möglichkeit, um Netzwerke zu virtualisieren, nicht Anwendungen",
+  q1_w: {
+    text: "Falsch, _Virtual Local Area Networks_ sind eine Möglichkeit, um Netzwerke zu virtualisieren. Es können zum Beispiel einige Ports eines Switches auf ein anderes VLAN 'getagged' werden, dadurch sind sie von den anderen Ports abgegrenzt, bilden also ihr eigenes Netzwerk.",
     next: "q2"
   },
 
@@ -74,7 +74,7 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   q3_a: {
-    text: "Auf virtuelle IP-Adressen können verschiedene Hosts antworten. Wer antwortet wird nach bestimmten Kriterien festgelegt. Dadurch können die eingehenden Anfragen von verschiedenen Hosts beantwortet werden (_load balancing_), oder ein Host beginnt zu antworten, wenn er bemerkt, das ein anderer Host nicht mehr erreichbar ist (_failover_).",
+    text: "Auf virtuelle (floating) IP-Adressen können verschiedene Hosts antworten. Wer antwortet wird nach bestimmten Kriterien festgelegt. Dadurch können die eingehenden Anfragen von verschiedenen Hosts beantwortet werden (_load balancing_), oder ein Host beginnt zu antworten, wenn er bemerkt, das ein anderer Host nicht mehr erreichbar ist (_failover_).",
     next: "vm1"
   },
 
@@ -134,7 +134,7 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   q5_r: {
-    text: "Genau, das Betriebssystem isoliert einige Prozesse voneinander, diese bilden dann 'Container'.",
+    text: "Genau, das Betriebssystem isoliert einige Prozesse in Gruppen voneinander, diese bilden dann 'Container'.",
     next: "q6"
   },
 

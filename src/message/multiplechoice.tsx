@@ -42,7 +42,7 @@ export class MultipleChoiceUI extends React.Component<MultipleChoice & Props, St
     const {text, answers, continuation, unlock = false, next } = this.props;
     const { chosen = [], done = false,  showAnswers = false } = this.state || {};
 
-    const question = <div className="notification">
+    const question = <div className="notification question">
       <ShowText text={text} done={() => this.setState({ showAnswers: true })} />
     </div>;
 
