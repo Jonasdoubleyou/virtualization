@@ -22,12 +22,12 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   begin: {
-    text: "Hier bekommst du einen kleinen Überblick über verschiedene Arten der Virtualisierung, zwischendrin gibt es ein paar Quizfragen zum wiederholen. Die Bearbeitung sollte 30min bis 1h 30min gehen, je nach dem wie gut du dich schon auskennst. ",
+    text: "Hier bekommst du einen kleinen Überblick über verschiedene Arten der Virtualisierung, der Schwerpunkt wird hier auf Plattform- und Betriebssystemvirtualisierung gelegt, da diese beiden Themen am Relevantesten für den Alltag sind, die anderen Formen der Virtualisierung (Netzerk, Speicher, ...) werden nur grob angeschnitten, da es sich hier eher um Spezialisierungen handelt. Zwischendrin gibt es ein paar Quizfragen zum wiederholen. Die Bearbeitung sollte 30min bis 1h 30min gehen, je nach dem wie gut du dich schon auskennst. ",
     next: "network1",
   },
 
   network1: {
-    text: "Wir beginnen mit der Netzwerkvirtualisierung. Hierbei bildet das Netzwerk nicht die physikalische Welt (also Kabel und Geräte) ab, sondern durch die Konfiguration von Switchen, Routern und Servern werden virtuelle Netzwerke, mit virtuellen Hosts erschaffen. Schau dir hierzu @VLANs|https://de.wikipedia.org/wiki/Virtual_Local_Area_Network@ und virtuelle IP-Adressen, insbesondere @floating IPs|https://www.ionos.de/digitalguide/server/knowhow/floating-ip-was-ist-das-eigentlich/@ an. Wenn dich das Thema interessiert, kannst du dir auch @VRRP|https://de.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol@ anschauen.",
+    text: "Wir beginnen mit der Netzwerkvirtualisierung. Hierbei bildet das Netzwerk nicht die physikalische Welt (also Kabel und Geräte) ab, sondern durch die Konfiguration von Switchen, Routern und Servern werden virtuelle Netzwerke, mit virtuellen Hosts erschaffen. Schau dir hierzu die @Funktionsweise von VLANs|https://www.thomas-krenn.com/de/wiki/VLAN_Grundlagen@ sowie ihre @Einsatzmöglichkeiten|https://www.ionos.de/digitalguide/server/knowhow/vlan-grundlagen/#c170960@ an. Auch virtuelle IP-Adressen, insbesondere @floating IPs|https://www.ionos.de/digitalguide/server/knowhow/floating-ip-was-ist-das-eigentlich/@ solltest du kennen (du musst aber beides nicht erklären können). Wenn dich das Thema interessiert, kannst du dir auch @VRRP|https://de.wikipedia.org/wiki/Virtual_Router_Redundancy_Protocol@ anschauen.",
     next: "q1",
   },
 
@@ -53,15 +53,16 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
     type: "multiple",
     text: "Vorteile von Netzwerkvirtualisierung sind ...",
     answers: [
-      { text: "Einfaches Austauschen von Diensten", right: true },
-      { text: "Ermöglicht Redundanzen", right: true },
+      { text: "Reduzierung von Angriffsvektoren", right: true },
+      { text: "Automatisierung der Netzwerkkonfiguration", right: true },
+      { text: "Ermöglicht Redundanzen bei Servern und Anwendungen", right: true },
       { text: "Ist sehr einfach einzurichten", right: false }
     ],
     next: "q2_a"
   },
 
   q2_a: {
-    text: "Netzerkvirtualisierung ermöglicht vieles, aber einfach zu konfigurieren ist sie nicht: Es müssen eine Vielzahl von Diensten und Protokollen ineinandergreifen, damit alles reibungslos funktioniert.",
+    text: "Durch Netzwerkvirtualisierung können Netze virtuell isoliert werden (VLANs), somit werden Angriffsvektoren reduziert, auch kann das Netzwerk automatisch auf viele Änderungen reagieren (z.B. _automatisches failover_ bei Ausfall eines Servers) und so Redundanzen herstellen. Einfach zu konfigurieren ist sie allerdings nicht: Es müssen eine Vielzahl von Diensten und Protokollen ineinandergreifen, damit alles reibungslos funktioniert.",
     next: "q3"
   },
 
@@ -79,13 +80,13 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   vm1: {
-    text: "Die nächste Art der Virtualisierung, mit der wir uns beschäftigen, ist die Virtualisierung von Maschinen. Hierbei betrachten wir den Computer aus der Sicht eines Programms. Das Programm kann verschiedene Anfragen an den Kernel stellen, z.B. _Öffne die Datei /etc/hosts_ oder _Welche anderen Programme laufen gerade?_ (siehe @Syscall|https://de.wikipedia.org/wiki/Systemaufruf@). Der Kernel kann dann auf diese Anfragen, je nach dem welches Programm anfragt, unterschiedlich antworten. Aus der Sicht der Programme sieht es dadurch so aus, als würden sie auf verschiedenen Computern laufen. Dateien unter dem selben Pfad können dadurch z.B. für zwei Programme auf verschiedene 'reale' Dateien des Hosts zeigen, und verschiedene Pfade auf die selbe Datei. Dadurch können Programme voneinander isoliert werden. Da hier das Betriebssystem die Virtualisierung übernimmt, spricht man hier von _Betriebssystemvirtualisierung_. Wenn man verschiedene Programme auf gemeinsame Ressourcen zugreifen lässt, spricht man von einem @Container|https://de.wikipedia.org/wiki/Containervirtualisierung@.",
+    text: "Die nächste Art der Virtualisierung, mit der wir uns beschäftigen, ist die Virtualisierung von Maschinen. Hierbei betrachten wir den Computer aus der Sicht eines Programms. Das Programm kann verschiedene Anfragen an den Kernel stellen, z.B. _Öffne die Datei /etc/hosts_ oder _Welche anderen Programme laufen gerade?_ (siehe @Syscall|https://de.wikipedia.org/wiki/Systemaufruf@ bei Interesse). Der Kernel kann dann auf diese Anfragen, je nach dem welches Programm anfragt, unterschiedlich antworten. Aus der Sicht der Programme sieht es dadurch so aus, als würden sie auf verschiedenen Computern laufen. Dateien unter dem selben Pfad können dadurch z.B. für zwei Programme auf verschiedene 'reale' Dateien des Hosts zeigen, und verschiedene Pfade auf die selbe Datei. Dies funktioniert nicht nur mit Dateien, sondern auch mit anderen Ressourcen. Dadurch können Programme voneinander isoliert werden, sodass sie nicht auf die selben Ressourcen zugreifen können. Da hier das Betriebssystem die Virtualisierung übernimmt, spricht man hier von _Betriebssystemvirtualisierung_. Wenn man verschiedene Programme auf gemeinsame Ressourcen zugreifen lässt, spricht man von einem Container, siehe hierzu Artikel von @Wikipedia|https://de.wikipedia.org/wiki/Containervirtualisierung@ und @IONOS|https://www.ionos.de/digitalguide/server/knowhow/server-container-virtualisierung-ohne-emulation/@.",
     next: "vm2",
     time: 2000,
   },
 
   vm2: {
-    text: "Wenn man nicht nur einzelne Programme virtualisieren will, sondern das gesamte Betriebssystem, nutzt man 'Virtuelle Maschinen' (oder auch _Plattformvirtualisierung_). Hierzu kann man entweder einen Computer @emulieren|https://de.wikipedia.org/wiki/Emulator_@, was allerdings extrem langsam ist, oder man nutzt spezielle Funktionen des Prozessors, um mehrere Betriebsysteme isoliert voneinander auszuführen. Eins der Betriebssysteme agiert dann als @Hypervisor|https://de.wikipedia.org/wiki/Hypervisor@, und verwaltet die anderen Betriebsysteme.",
+    text: "Wenn man nicht nur einzelne Programme virtualisieren will, sondern das gesamte Betriebssystem, nutzt man 'Virtuelle Maschinen' (oder auch _Plattformvirtualisierung_). Hierzu kann man entweder einen Computer @emulieren|https://de.wikipedia.org/wiki/Emulator_@, was allerdings extrem langsam ist, oder man nutzt spezielle Funktionen des Prozessors, um mehrere Betriebsysteme isoliert voneinander auszuführen. Eins der Betriebssysteme agiert dann als @Hypervisor|https://www.redhat.com/de/topics/virtualization/what-is-a-hypervisor@ (@Wikipedia|https://de.wikipedia.org/wiki/Hypervisor@), und verwaltet die anderen Betriebsysteme (bei Hypervisor Typ 1).",
     next: "vm_video"
   },
 
@@ -95,7 +96,7 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   vm3: {
-    text: "Dieses Video solltest du dir auf jeden Fall anschauen.",
+    text: "Dieses Video solltest du dir auf jeden Fall anschauen, in ihm werden Virtuelle Maschinen und Containerisierung noch einmal verglichen, es eignet sich also gut als Wiederholung.",
     answers: [
       { text: "Alles klar, das reicht mir an Wissen", next: "q4", },
       { text: "Ich habe 4 Wochen Zeit, Lust x86 assembly zu lernen, und zu verstehen wie VMs wirklich funktionieren.", next: "vm3_extended"}
@@ -157,7 +158,7 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   storage1: {
-    text: "Schauen wir uns nun 'Speichervirtualisierung' an. Auch hier bietet @Wikipedia|https://de.wikipedia.org/wiki/Speichervirtualisierung@ einen guten Überblick, auch von @Storage Area Networks|https://de.wikipedia.org/wiki/Storage_Area_Network@ sollte man mal gehört haben.",
+    text: "Schauen wir uns nun 'Speichervirtualisierung' an. Auch hier bietet @Wikipedia|https://de.wikipedia.org/wiki/Speichervirtualisierung@ einen guten Überblick (alternativ bietet das Kapitel 'Einführung' des @Bitkom Leifaden Speichervirtualisierung|https://www.bitkom.org/sites/default/files/file/import/121119-Speichervirtualisierung.pdf@ einen guten Überblick), auch von @Storage Area Networks|https://de.wikipedia.org/wiki/Storage_Area_Network@ sollte man mal gehört haben.",
     next: "q7"
   },
 
@@ -178,7 +179,7 @@ const messageByID: {[id: string]: Omit<Message, "id"> } = {
   },
 
   application1: {
-    text: "Zum Thema _Anwendungsvirtualisierung_ solltest du eigentlich schon Experte sein. Wenn du auf google.com was googlest, auf gmx.de deine Mails liest oder auf netflix.com eine Serie bingewatchst, nutzt du schon 'virtuelle Anwendungen', die also nicht auf deinem Gerät installiert sind, sondern auf einem Server bereitgestellt werden.",
+    text: "Zum Thema _Anwendungsvirtualisierung_ solltest du eigentlich schon Experte sein. Wenn du auf google.com was googlest, auf gmx.de deine Mails liest oder auf netflix.com eine Serie bingewatchst, nutzt du schon 'virtuelle Anwendungen', die also nicht auf deinem Gerät installiert sind, sondern auf einem Server bereitgestellt werden, z.B. in Form einer Website. Außerdem ist der Begriff noch schwammiger als alle anderen Virtualisierungsformen, eine allgemeingültige Begriffsdefinition gibt es hier also schon gar nicht.",
     next: "summary",
   },
 
